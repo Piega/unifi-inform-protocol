@@ -26,7 +26,8 @@ The following data types are available:
  * `0x07`: Salt
  * `0x08`: Random Challenge
  * `0x09`: Challenge
- * `0x0A`: Uptime in seconds
+ * `0x0A`: Uptime
+  * Four bytes, time is in seconds
  * `0x0B`: Hostname
   * Always `UBNT` for an unadopted or factory reset AP
  * `0x0C`: Platform
@@ -35,13 +36,15 @@ The following data types are available:
  * `0x0E`: WMode ??
  * `0x0F`: Webui ??
  * `0x12`: Packet Increment
-  * Length always four bytes, first packet starts at 1, increments for every packet sent
+  * Four bytes, first packet starts at 1, increments for every packet sent
  * `0x13`: Hardware address (again)
  * `0x14`: Model
  * `0x15`: Platform (again)
  * `0x16`: Firmware version, short
   * This is the version seen in the controller and discovery tool, for example `3.7.17.5220`
- * `0x17`-`0x1a`: Unknown (always present together; `0x17` == 1, `0x18` == 0, `0x19` == 1, `0x20` == 0)
+ * `0x17`: Pending / Managed flag
+  * 1 byte, 0 = pending, 1 = adopted/managed
+ * `0x18`-`0x1a`: Unknown (seen so far: `0x18` == 0, `0x19` == 1, `0x20` == 0)
  * `0x1b`: Factory firmware version
   * Always in Major.Minor.Sub, for example `3.7.17`
 
